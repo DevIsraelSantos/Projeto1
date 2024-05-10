@@ -1,0 +1,16 @@
+model usuarios {
+    id        Int      @id @default(autoincrement())
+    nome      String
+    email     String   @unique
+    createdAt DateTime @default(now())
+    notas     notas[]
+}
+
+model notas {
+    id        Int      @id @default(autoincrement())
+    titulo    String
+    conteudo  String
+    createdAt DateTime @default(now())
+    usuarioId Int
+    usuarios  usuarios @relation(fields: [usuarioId], references: [id])
+}
